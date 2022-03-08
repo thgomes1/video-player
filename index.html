@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>VIDEO PLAYER</title>
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Poppins:wght@300&display=swap");
+        </style>
+    </head>
+    <body>
+        <main id="playerContainer">
+            <header id="headerContainer">
+                <h1>THE LAST DANCE</h1>
+            </header>
+
+            <section id="videoContainer">
+                <video id="video" src="./assets/videos/video.mp4"></video>
+                <section id="controls">
+                    <article id="barContainer">
+                        <div id="progressBar"></div>
+                        <input id="timeBar" onchange="videoTime()" type="range" min="0" max="1000" value="0" step="1" />
+                    </article>
+
+                    <article id="leftContainer">
+                        <img id="playStop" class="iconCfg" onclick="playStop()" src="./assets/images/play.png" alt="" />
+                        <img id="back" class="iconCfg" onclick="back()" src="./assets/images/back.png" alt="" />
+                        <img id="forward" class="iconCfg" onclick="forward()" src="./assets/images/forward.png" alt="" />
+                    </article>
+
+                    <section id="rightContainer">
+                        <article id="volumeControls">
+                            <img id="volume" class="iconCfg" src="./assets/images/volume.png" alt="" />
+                            <article id="volume_barContainer">
+                                <input id="volumeBar" onchange="volumeBar()" type="range" min="0" max="100" value="0" step="1" />
+                            </article>
+                            <img id="expand" class="iconCfg" onclick="fullscreen()" src="./assets/images/fullscreen.png" alt="" />
+                        </article>
+                    </section>
+                </section>
+            </section>
+        </main>
+        <footer id="footerContainer">
+            <a href="https://github.com/thgomes1" target="_blank">
+                <p>Desenvolvido por Thiago Gomes - <i class="fab fa-github"></i> Github</p>
+            </a>
+            <p id="text">
+                Todos os direitos reservados para Imperial Sportsbetio. Video Player desenvolvido apenas para fins estudantis sem nenhuma intenção
+                comercial.
+            </p>
+        </footer>
+    </body>
+
+    <script src="./script.js"></script>
+</html>

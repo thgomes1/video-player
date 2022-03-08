@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+    letter-spacing: 0.25px;
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #1f2630;
+}
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.iconCfg {
+    width: 27px;
+}
+.iconCfg:hover {
+    cursor: pointer;
+}
+#controls div {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+#playerContainer {
+    border-radius: 15px;
+    width: 57vw;
+    background-color: #0bd764;
+    box-shadow: 0px 0px 25px 15px rgb(0, 0, 0);
+}
+
+/*---------HEADER-CONTAINER---------*/
+#headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    padding: 10px;
+
+    color: rgb(255, 255, 255);
+}
+/*---------HEADER-CONTAINER-END---------*/
+
+/*----------------------VIDEO-CONTAINER------------------*/
+#videoContainer {
+    position: relative;
+    width: 55vw;
+    margin: 0px 0px 18px 0px;
+    border-radius: 10px;
+    z-index: 1;
+    overflow: hidden;
+}
+/*--VIDEO--*/
+#videoContainer video {
+    position: relative;
+    border-radius: 0px 0px 10px 10px px;
+    width: 100%;
+    height: 100%;
+}
+
+/*-------------CONTROLS-CONTAINER-------------*/
+#controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    height: 45px;
+    bottom: -20%;
+    background-color: #1f2630;
+    transition: 500ms;
+    z-index: 0;
+}
+
+/*------BAR-CONTAINER------*/
+#barContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+#barContainer #progressBar {
+    padding: 0;
+    height: 7px;
+    left: 0;
+    background: #03fc73;
+    position: absolute;
+    bottom: 100%;
+}
+#barContainer #timeBar {
+    position: absolute;
+    bottom: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 7px;
+    width: 100%;
+    background: rgba(0, 253, 76, 0.342);
+}
+#barContainer #timeBar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    padding: 0;
+    opacity: 0%;
+    height: 15px;
+    transition: 500ms;
+    border-radius: 50px;
+    background: rgb(0, 194, 32);
+    cursor: pointer;
+}
+#barContainer #timeBar:hover::-webkit-slider-thumb {
+    opacity: 100%;
+}
+
+/*---------LEFT-CONTAINER---------*/
+#leftContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15px;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+}
+#leftContainer img {
+    margin-left: 3px;
+}
+#leftContainer #playStop {
+    margin-right: 5px;
+}
+
+/*---------RIGHT-CONTAINER---------*/
+#rightContainer {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+}
+#rightContainer #volumeControls {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+    right: 3.5%;
+    height: 45px;
+    transition: 500ms;
+}
+#rightContainer #volumeControls:hover {
+    cursor: pointer;
+}
+#rightContainer #volumeControls #volume {
+    margin-right: 10px;
+}
+#rightContainer #volumeControls #barLoadedVolume {
+    position: absolute;
+    visibility: visible;
+    left: 45%;
+    bottom: 45%;
+    height: 3px;
+    background: #03fc73;
+}
+#rightContainer #volumeControls #volumeBar {
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    bottom: 100%;
+    height: 5px;
+    margin-bottom: 7px;
+    width: 0px;
+    border-radius: 50px;
+    background: rgba(0, 253, 76, 0.342);
+    transition: 500ms;
+}
+#rightContainer #volumeControls #volumeBar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    opacity: 0%;
+    height: 12px;
+    transition: 500ms;
+    border-radius: 50px;
+    background: rgb(0, 194, 32);
+    cursor: pointer;
+}
+#rightContainer #volumeControls #volumeBar:hover::-webkit-slider-thumb {
+    opacity: 100%;
+}
+#rightContainer #expand {
+    float: right;
+    margin-left: 10px;
+}
+/*-------------CONTROLS-CONTAINER-END-------------*/
+
+/*------------------VIDEO-CONTAINER-END------------------*/
+
+#footerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: absolute;
+    overflow: hidden;
+    bottom: 0%;
+    border-radius: 10px 10px 0px 0px;
+    max-width: 500px;
+    min-width: 100px;
+    height: 32px;
+    padding: 2px 10px;
+    background-color: #0bd764;
+    transition: 500ms;
+}
+#footerContainer:hover {
+    background-color: #0cb354;
+}
+#footerContainer a {
+    padding-top: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-family: "Nunito", sans-serif;
+}
+#footerContainer #text {
+    visibility: visible;
+    margin-top: 10px;
+    font-size: 13px;
+    color: white;
+    text-align: justify;
+    width: 100%;
+    padding: 0px 20px;
+}
