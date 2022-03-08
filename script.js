@@ -13,14 +13,14 @@ let footer = document.getElementById("footerContainer");
 onload = function () {
     video.addEventListener("timeupdate", videoTimeUpdate);
     videoContainer.addEventListener("mouseover", showControls);
-    videoContainer.addEventListener("dblclick", fullscreen);
+    video.addEventListener("dblclick", fullscreen);
     video.addEventListener("click", playStop);
     barVolume.addEventListener("mouseover", showVolumeBar);
     footer.addEventListener("mouseover", showFooter);
 };
 
 function showFooter() {
-    footer.style.height = "90px";
+    footer.style.height = "115px";
     footer.addEventListener("mouseleave", function () {
         footer.style.height = "32px";
     });

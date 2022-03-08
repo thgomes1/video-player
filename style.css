@@ -223,7 +223,7 @@ main {
 #footerContainer:hover {
     background-color: #0cb354;
 }
-#footerContainer a {
+#footerContainer #title {
     padding-top: 6px;
     text-decoration: none;
     color: white;
@@ -235,7 +235,17 @@ main {
     margin-top: 10px;
     font-size: 13px;
     color: white;
-    text-align: justify;
+    text-align: center;
     width: 100%;
     padding: 0px 20px;
+}
+#footerContainer #credits {
+    text-decoration: none;
+    color: white;
+    background-color: #1f2630;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: 7px;
 }
