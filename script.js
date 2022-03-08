@@ -1,36 +1,58 @@
 let videoContainer = document.getElementById("videoContainer");
 let video = document.getElementById("video");
+let currentTime = document.getElementById("currentTime");
+let totalTime = document.getElementById("totalTime");
 let controls = document.getElementById("controls");
-let play_stop = document.getElementById("playStop");
-let inputTime = document.getElementById("timeBar");
+let playStopIcon = document.getElementById("playStopIcon");
 let progressBar = document.getElementById("progressBar");
-let inputVolume = document.getElementById("volumeBar");
-let barVolume = document.getElementById("volumeControls");
-let inputBarVolume = document.getElementById("volumeBar");
-let volumeIcon = document.getElementById("volume");
-let footer = document.getElementById("footerContainer");
+let inputProgressBar = document.getElementById("inputProgressBar");
+let volumeContainer = document.getElementById("volumeContainer");
+let volumeIcon = document.getElementById("volumeIcon");
+let inputVolumeBar = document.getElementById("inputVolumeBar");
+let footerContainer = document.getElementById("footerContainer");
+let counter;
 
 onload = function () {
-    video.addEventListener("timeupdate", videoTimeUpdate);
-    videoContainer.addEventListener("mouseover", showControls);
+    video.addEventListener("timeupdate", progressBarWidth);
     video.addEventListener("dblclick", fullscreen);
     video.addEventListener("click", playStop);
-    barVolume.addEventListener("mouseover", showVolumeBar);
-    footer.addEventListener("mouseover", showFooter);
+    videoContainer.addEventListener("mouseover", showControls);
+    volumeContainer.addEventListener("mouseover", showVolumeBar);
+    footerContainer.addEventListener("mouseover", showFooterContainer);
+    video.addEventListener("play", countTime);
+    inputVolumeBar.addEventListener("change", volumeBarValue);
 };
 
-function showFooter() {
-    footer.style.height = "115px";
-    footer.addEventListener("mouseleave", function () {
-        footer.style.height = "32px";
+function calcTime(value) {
+    var sec = parseInt(value);
+    let hours = Math.floor(sec / 3600);
+    let minutes = Math.floor((sec - hours * 3600) / 60);
+    let seconds = sec - hours * 3600 - minutes * 60;
+    if (hours == 0) {
+        return minutes + ":" + (seconds >= 10 ? seconds : "0" + seconds);
+    } else {
+        return hours + ":" + (minutes >= 10 ? minutes : "0" + minutes) + ":" + (seconds >= 10 ? seconds : "0" + seconds);
+    }
+}
+function countTime() {
+    totalTime.innerHTML = calcTime(video.duration);
+    counter = setInterval(function () {
+        currentTime.innerHTML = calcTime(video.currentTime);
+    }, 1000);
+}
+
+function showFooterContainer() {
+    footerContainer.style.height = "115px";
+    footerContainer.addEventListener("mouseleave", function () {
+        footerContainer.style.height = "32px";
     });
 }
 
 function showVolumeBar() {
-    inputBarVolume.style.width = "80px";
-    barVolume.addEventListener("mouseleave", function () {
-        inputBarVolume.style.width = "0px";
-        barVolume.style.width = "";
+    inputVolumeBar.style.width = "80px";
+    volumeContainer.addEventListener("mouseleave", function () {
+        inputVolumeBar.style.width = "0px";
+        volumeContainer.style.width = "";
     });
 }
 
@@ -43,31 +65,26 @@ function showControls() {
 
 function playStop() {
     if (video.paused) {
-        play_stop.setAttribute("src", "./assets/images/pause.png");
+        playStopIcon.setAttribute("src", "./assets/images/pause.png");
         video.play();
     } else {
-        play_stop.setAttribute("src", "./assets/images/play.png");
+        playStopIcon.setAttribute("src", "./assets/images/play.png");
         video.pause();
     }
 }
 function videoTime() {
-    time = video.duration * (inputTime.value / 1000);
-    video.currentTime = time;
+    timeCurrent = video.duration * (inputProgressBar.value / 1000);
+    video.currentTime = timeCurrent;
 }
-function videoTimeUpdate() {
+function progressBarWidth() {
     time = video.currentTime * (1000 / video.duration);
-    inputTime.value = time;
-    inputTime.addEventListener("change", barTimeWidth());
+    width = time / 10;
+    progressBar.style.width = `${width}%`;
 }
-function barTimeWidth() {
-    time = video.currentTime * (1000 / video.duration);
-    timeBarWidth = time / 10;
-    progressBar.style.width = `${timeBarWidth}%`;
-}
-function volumeBar() {
-    volume = inputVolume.value / 100;
+
+function volumeBarValue() {
+    volume = inputVolumeBar.value / 100;
     video.volume = volume;
-    inputVolume.addEventListener("change", barVolumeWidth());
     if (video.volume === 0) {
         volumeIcon.setAttribute("src", "./assets/images/muted.png");
     } else if (video.volume <= 0.3) {
@@ -78,20 +95,11 @@ function volumeBar() {
         volumeIcon.setAttribute("src", "./assets/images/volume.png");
     }
 }
-function barVolumeWidth() {
-    volumeBarWidth = volume * 100;
-}
 function back() {
     video.currentTime -= 10;
 }
 function forward() {
     video.currentTime += 10;
-}
-function increase_vel() {
-    video.playbackRate += 0.1;
-}
-function decrease_vel() {
-    video.playbackRate -= 0.1;
 }
 function fullscreen() {
     video.requestFullscreen();
